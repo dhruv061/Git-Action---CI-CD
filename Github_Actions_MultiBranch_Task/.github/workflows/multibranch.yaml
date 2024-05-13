@@ -1,0 +1,41 @@
+name: Branch-based Pipeline
+
+on:
+  push:
+    branches:
+      - stage
+      - dev
+      - pre-prod
+      - prod
+
+jobs:
+  stage_job:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/stage'
+    steps:
+      - name: stage
+        run: echo "Stage is run..."
+
+  dev_job:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    steps:
+      - name: dev
+        run: echo "dev is run..."
+
+  pre_prod_job:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/pre-prod'
+    steps:
+      - name: pre-prod
+        run: echo "pre-prod is run..."
+
+  prod_job:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/prod'
+    steps:
+      - name: Prompt for confirmation
+        run: |
+          echo "Code is being pushed to the prod branch. Do you want to continue? (y/n)"
+          read -r continue
+          if [ "$continue" != "y" ]; then exit 1; fi

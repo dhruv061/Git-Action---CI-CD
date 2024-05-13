@@ -1,0 +1,28 @@
+name: 3 jobs pipline
+
+on: 
+    push:
+    workflow_dispatch:
+
+jobs:
+    stage:
+        runs-on: ubuntu-latest
+        steps:
+            - name: sleep 10 secounds
+              run: sleep 10
+            - name: print step name
+              run: echo "Step- stage is complited"
+    dev:
+        runs-on: ubuntu-latest
+        steps:
+            - name: sleep 10 secounds
+              run: sleep 10
+            - name: print step name
+              run: echo "Step- dev is complited"   
+    prod:
+        runs-on: ubuntu-latest
+        steps:
+            - name: sleep 10 secounds
+              run: sleep 10
+            - name: print step name
+              run: echo "Step- prod is complited"   
